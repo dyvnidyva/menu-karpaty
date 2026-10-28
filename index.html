@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#899064">
+  <title>Меню в Карпати</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <div class="mark" aria-hidden="true">✳</div>
+      <span class="eyebrow">СПІЛЬНЕ ПЛАНУВАННЯ</span>
+      <h1>Меню в <em>Карпати</em></h1>
+      <p class="intro">Плануємо страви, розподіляємо покупки й нічого не забуваємо — разом.</p>
+    </header>
+
+    <section class="trip-card" aria-label="План поїздки">
+      <div class="trip-icon" aria-hidden="true">⌁</div>
+      <div>
+        <p class="small-label">НАША ПОЇЗДКА</p>
+        <h2>Субота — понеділок</h2>
+        <p class="muted">Меню та покупки в одному спільному документі</p>
+      </div>
+    </section>
+
+    <section class="actions">
+      <a class="primary action-link" id="sheetLink" href="#" target="_blank" rel="noopener">
+        <span class="action-icon" aria-hidden="true">↗</span>
+        <span><strong>Відкрити меню та покупки</strong><small>Google Таблиці · спільне редагування</small></span>
+      </a>
+      <div class="mini-grid">
+        <article class="mini-card">
+          <span class="mini-icon" aria-hidden="true">☷</span>
+          <h3>Меню</h3>
+          <p>Сніданки, обіди, вечері та перекуси на кожен день.</p>
+        </article>
+        <article class="mini-card">
+          <span class="mini-icon" aria-hidden="true">✓</span>
+          <h3>Список продуктів</h3>
+          <p>Кількість, відповідальний за покупку та позначка «куплено».</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="notice" id="setupNotice">
+      <strong>Ще потрібно під’єднати таблицю</strong>
+      <p>Після створення Google Таблиці вставте її посилання у файл <code>config.js</code>, а потім завантажте файли на GitHub.</p>
+    </section>
+
+    <footer>
+      <span>Зроблено для спільної поїздки ♡</span>
+      <span class="footer-dot">•</span>
+      <span>Зміни зберігаються в Google Таблицях</span>
+    </footer>
+  </main>
+  <script src="config.js"></script>
+  <script>
+    const url = (window.MENU_CONFIG && window.MENU_CONFIG.sheetUrl || "").trim();
+    const link = document.getElementById("sheetLink");
+    const notice = document.getElementById("setupNotice");
+    if (url && url !== "PASTE_GOOGLE_SHEET_LINK_HERE") {
+      link.href = url;
+      notice.hidden = true;
+    } else {
+      link.href = "https://sheets.google.com/";
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        notice.classList.add("attention");
+        notice.scrollIntoView({behavior: "smooth", block: "center"});
+      });
+    }
+  </script>
+</body>
+</html>
